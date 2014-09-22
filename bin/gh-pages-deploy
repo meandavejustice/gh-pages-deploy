@@ -16,8 +16,16 @@ if (config.noprompt) {
 
   prompt.start();
 
-  prompt.get('Would you like to deploy to github using these commands? (Y/N)'.magenta, function(err,result) {
-    if (result.toLowerCase() === 'n') process.exit(0);
+  var question = {
+    properties: {
+      deploy: {
+        description: 'Would you like to deploy to github using these commands? (Y/N)'.magenta
+      }
+    }
+  };
+
+  prompt.get(question, function(err,result) {
+    if (result.deploy.toLowerCase() === 'n') process.exit(0);
     deploy.execBuild(buildCMD);
   });
 }
