@@ -1,0 +1,17 @@
+{
+  "name": "gh-pages-deploy",
+  "version": "0.1.0",
+  "description": "deploy to gh-pages with one command",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "meandave",
+  "license": "MIT",
+  "bin": "./bin/gh-pages-deploy",
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "prompt": "^0.2.14",
+    "require-module": "^0.1.0"
+  }
+}
