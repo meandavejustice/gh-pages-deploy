@@ -11,7 +11,7 @@
   "license": "MIT",
   "bin": "./bin/gh-pages-deploy",
   "gh-pages-deploy": {
-    "staticpath": "example/"
+    "staticpath": "example"
   },
   "dependencies": {
     "chalk": "^0.5.1",

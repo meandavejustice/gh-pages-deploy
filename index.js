@@ -19,7 +19,7 @@ module.exports = {
       });
     }
 
-    if (cfg.staticpath) cmd += "cp -r " + cfg.staticpath + "/* && ";
+    if (cfg.staticpath) cmd += "cp -r " + cfg.staticpath + "/* . && ";
     if (cfg.cname) cmd += "echo '" + cfg.cname + "' > CNAME && ";
 
     return cmd;

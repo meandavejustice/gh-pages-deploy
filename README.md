@@ -8,7 +8,7 @@ All you need to do is specify a couple of things in your package.json(all of whi
 
 ``` JSON
   "gh-pages-deploy": {
-    "staticpath": "dist/",
+    "staticpath": "dist",
     "cname": "nope.org",
     "prep": [
       "build-sass",
