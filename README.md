@@ -27,6 +27,9 @@ any script that you have declared in your "scripts" object in your `package.json
 need to confirm the commands before deploying.
 
 ## About
+This repo uses `gh-pages-deploy`. Checkout the [gh-pages](https://github.com/meandavejustice/gh-pages-deploy/tree/gh-pages)
+branch and the result at [http://davejustice.com/gh-pages-deploy/](http://davejustice.com/gh-pages-deploy/).
+
 
 This was inspired after a conversation with [max ogden](https://github.com/maxogden) regarding the setup of
 the [Code For Portland](http://www.codeforportland.org/) Jekyll Pages. Inspired by the [
