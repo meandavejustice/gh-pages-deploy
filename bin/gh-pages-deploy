@@ -1,2 +1,24 @@
 #!/usr/bin/env node
-require('../index')();
+
+var requireModule = require('require-module');
+var packageJSON = requireModule('./package.json');
+var deploy = require('../index');
+
+var config = packageJSON['gh-pages-deploy'];
+
+var buildCMD = deploy.getBuildCMD(deploy.buildPrep(config.staticpath,
+                                                   config.prep,
+                                                   config.cname));
+
+deploy.displayCMD(buildCMD);
+
+if (config.confirm) {
+  var prompt = require('prompt');
+
+  prompt.start();
+
+  prompt.get('Would you like to deploy to github using these commands? (Y/N)'.magenta, function(err,result) {
+    if (result.toLowerCase() === 'n') process.exit(0);
+    deploy.execBuild(buildCMD);
+  });
+}
