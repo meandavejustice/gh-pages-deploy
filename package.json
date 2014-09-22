@@ -4,11 +4,15 @@
   "description": "deploy to gh-pages with one command",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "./bin/gh-pages-deploy"
   },
   "author": "meandave",
   "license": "MIT",
   "bin": "./bin/gh-pages-deploy",
+  "gh-pages-deploy": {
+    "staticpath": "example/"
+  },
   "dependencies": {
     "chalk": "^0.5.1",
     "prompt": "^0.2.14",

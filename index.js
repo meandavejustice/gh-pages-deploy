@@ -10,15 +10,17 @@ module.exports = {
     return gitcheckout + prepCMD + gitcommit + gitpush;
   },
 
-  buildPrep: function(staticDIR, prepScripts, cname) {
+  buildPrep: function(cfg) {
     var cmd = '';
     var prefix = 'npm run ';
-    prepScripts.forEach(function(script, idx) {
-      cmd += prefix + script + ' && ';
-    });
+    if (cfg.prep) {
+      cfg.prep.forEach(function(script, idx) {
+        cmd += prefix + script + ' && ';
+      });
+    }
 
-    if (staticDIR) cmd += "cp -r " + staticDIR + "/* && ";
-    if (cname) cmd += "echo '" + cname + "' > CNAME && ";
+    if (cfg.staticpath) cmd += "cp -r " + cfg.staticpath + "/* && ";
+    if (cfg.cname) cmd += "echo '" + cfg.cname + "' > CNAME && ";
 
     return cmd;
   },

@@ -4,15 +4,14 @@ var requireModule = require('require-module');
 var packageJSON = requireModule('./package.json');
 var deploy = require('../index');
 
-var config = packageJSON['gh-pages-deploy'];
-
-var buildCMD = deploy.getBuildCMD(deploy.buildPrep(config.staticpath,
-                                                   config.prep,
-                                                   config.cname));
+var config = packageJSON['gh-pages-deploy'] || {};
+var buildCMD = deploy.getBuildCMD(deploy.buildPrep(config));
 
 deploy.displayCMD(buildCMD);
 
-if (config.confirm) {
+if (config.noprompt) {
+  deploy.execBuild(buildCMD);
+} else {
   var prompt = require('prompt');
 
   prompt.start();

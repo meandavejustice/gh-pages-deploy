@@ -1,0 +1,33 @@
+html {
+    font-family: monospace;
+    color: #50F6C5;
+    background: #414141;
+    text-align: center;
+}
+
+article {
+    margin: 200px auto;
+    width: 30%;
+}
+
+a {
+    color: #FFA500;
+    text-decoration: none;
+}
+
+.term {
+    background: #000;
+    padding: 14px;
+    width: 80%;
+    margin: auto;
+}
+
+.term span {
+    color: #FF7FF9;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
