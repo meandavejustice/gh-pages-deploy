@@ -44,7 +44,7 @@ To configure `gh-pages-deploy` all you need to do is specify a couple of things 
       "build-sass",
       "optimize-img"
     ],
-    "noprompt" false
+    "noprompt": false
   },
 
 ```
