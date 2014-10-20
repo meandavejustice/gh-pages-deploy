@@ -3,13 +3,13 @@ var chalk = require('chalk');
 
 var gitbranch = "git branch -f gh-pages &&";
 var gitcheckout = "git checkout gh-pages &&";
-var gitrest = "git reset --hard origin/master && "
+var gitreset = "git reset --hard origin/master && ";
 var gitcommit = "git add -A . && git commit -a -m 'gh-pages update' && ";
 var gitpush = "git push origin gh-pages --force && git checkout master";
 
 module.exports = {
   getBuildCMD: function(prepCMD) {
-    return gitbranch + gitcheckout + prepCMD + gitcommit + gitpush;
+    return gitbranch + gitcheckout + gitreset + prepCMD + gitcommit + gitpush;
   },
 
   buildPrep: function(cfg) {
