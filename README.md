@@ -4,7 +4,37 @@
 
 Deploy straight to [github pages](https://pages.github.com/) with one simple command.
 
-All you need to do is specify a couple of things in your package.json(all of which are optional)
+## Usage
+
+```
+# install it from npm and symlink it into your PATH
+npm install gh-pages-deploy -g
+
+# now run it!
+gh-pages-deploy
+```
+
+You can also use `npm run` to package it with your app without installing it globally.
+
+First add this to your scripts section of `package.json`:
+
+```JSON
+  "scripts": {
+    "deploy": "gh-pages-deploy"
+  },
+```
+
+And then install `gh-pages-deploy` as a devDependency:
+
+```
+npm install gh-pages-deploy --save-dev
+```
+
+And now you can run `npm run deploy` to run the `gh-pages-deploy` installed in the local `node_modules` folder (even if you have never done `npm install gh-pages-deploy -g`).
+
+## Options
+
+To configure `gh-pages-deploy` all you need to do is specify a couple of things in your `package.json` (all of which are optional)
 
 ``` JSON
   "gh-pages-deploy": {
@@ -27,6 +57,7 @@ any script that you have declared in your "scripts" object in your `package.json
 need to confirm the commands before deploying.
 
 ## About
+
 This repo uses `gh-pages-deploy`. Checkout the [gh-pages](https://github.com/meandavejustice/gh-pages-deploy/tree/gh-pages)
 branch and the result at [http://davejustice.com/gh-pages-deploy/](http://davejustice.com/gh-pages-deploy/).
 
