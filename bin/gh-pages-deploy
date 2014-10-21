@@ -5,9 +5,10 @@ var packageJSON = requireModule('./package.json');
 var deploy = require('../index');
 
 var config = packageJSON['gh-pages-deploy'] || {};
-var buildCMD = deploy.getBuildCMD(deploy.buildPrep(config));
+var defaultBranch = config.defaultBranch ? config.defaultBranch : "origin/master";
+var buildCMD = deploy.getBuildCMD(deploy.buildPrep(config), defaultBranch);
 
-deploy.displayCMD(buildCMD);
+deploy.displaysCMD(buildCMD);
 
 if (config.noprompt) {
   deploy.execBuild(buildCMD);

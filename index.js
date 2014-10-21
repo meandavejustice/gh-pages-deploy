@@ -1,14 +1,24 @@
 var exec = require('child_process').exec;
+var format = require('util').format;
 var chalk = require('chalk');
 
 var gitbranch = "git branch -f gh-pages && ";
 var gitcheckout = "git checkout gh-pages && ";
-var gitreset = "git reset --hard origin/master && ";
 var gitcommit = "git add -A . && git commit -a -m 'gh-pages update' && ";
-var gitpush = "git push origin gh-pages --force && git checkout master";
+
+function getResetCMD(defaultBranch) {
+  return format("git reset --hard %s && ", defaultBranch);
+}
+
+function getPushCMD(defaultBranch) {
+  return format("git push origin gh-pages --force && git checkout %s", defaultBranch);
+}
 
 module.exports = {
-  getBuildCMD: function(prepCMD) {
+  getBuildCMD: function(prepCMD, defaultBranch) {
+    var gitreset = getResetCMD(defaultBranch);
+    var gitpush = getPushCMD(defaultBranch);
+
     return gitbranch + gitcheckout + gitreset + prepCMD + gitcommit + gitpush;
   },
 
