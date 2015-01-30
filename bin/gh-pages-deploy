@@ -1,16 +1,15 @@
 #!/usr/bin/env node
-
-var requireModule = require('require-module');
-var packageJSON = requireModule('./package.json');
+var packageJSON = require('require-module')('./package.json');
 var deploy = require('../index');
 
-var config = packageJSON['gh-pages-deploy'] || {};
-var buildCMD = deploy.getBuildCMD(deploy.buildPrep(config));
+var cfg = packageJSON['gh-pages-deploy'] || {};
 
-deploy.displayCMD(buildCMD);
+var buildCmd = deploy.getFullCmd(cfg);
 
-if (config.noprompt) {
-  deploy.execBuild(buildCMD);
+deploy.displayCmds(deploy.getFullCmd(cfg));
+
+if (cfg.noprompt) {
+  deploy.execBuild(buildCmd);
 } else {
   var prompt = require('prompt');
 
@@ -26,6 +25,6 @@ if (config.noprompt) {
 
   prompt.get(question, function(err,result) {
     if (result.deploy.toLowerCase() === 'n') process.exit(0);
-    deploy.execBuild(buildCMD);
+    deploy.execBuild(buildCmd);
   });
 }

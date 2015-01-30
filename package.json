@@ -13,7 +13,7 @@
   "gh-pages-deploy": {
     "staticpath": "example"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/meandavejustice/gh-pages-deploy.git"
   },
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/meandavejustice/gh-pages-deploy",
   "dependencies": {
     "chalk": "^0.5.1",
+    "gasket": "^2.0.0",
     "prompt": "^0.2.14",
     "require-module": "^0.1.0"
   }
