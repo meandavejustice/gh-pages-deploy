@@ -1,6 +1,6 @@
 {
   "name": "gh-pages-deploy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "deploy to gh-pages with one command",
   "main": "index.js",
   "scripts": {
