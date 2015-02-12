@@ -31,12 +31,12 @@ function getPrepCmd(cfg) {
   var userCmds = [];
   if (cfg.prep) {
     userCmds = cfg.prep.map(function(script) {
-      return prefix + script;
+      return prefix + script + "&& ";
     });
   }
 
-  if (cfg.staticpath) userCmds.push("cp -r " + cfg.staticpath + "/* .");
-  if (cfg.cname) userCmds.push("echo '" + cfg.cname + "' > CNAME");
+  if (cfg.staticpath) userCmds.push("cp -r " + cfg.staticpath + "/* . && ");
+  if (cfg.cname) userCmds.push("echo '" + cfg.cname + "' > CNAME && ");
 
   return userCmds;
 }
