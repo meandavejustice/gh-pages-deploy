@@ -29,7 +29,7 @@ function getBuildCmd(prepCmds) {
                            gitadd,
                            gitcommit,
                            gitpush,
-                           gitcheckmaster], 4);
+                           gitcheckmaster], 3);
 }
 
 function getPrepCmd(cfg) {
@@ -37,12 +37,12 @@ function getPrepCmd(cfg) {
   var userCmds = [];
   if (cfg.prep) {
     userCmds = cfg.prep.map(function(script) {
-      return prefix + script + "&& ";
+      return prefix + script;
     });
   }
 
-  if (cfg.staticpath) userCmds.push("cp -r " + cfg.staticpath + "/* . && ");
-  if (cfg.cname) userCmds.push("echo '" + cfg.cname + "' > CNAME && ");
+  if (cfg.staticpath) userCmds.push("cp -r " + cfg.staticpath + "/* .");
+  if (cfg.cname) userCmds.push("echo '" + cfg.cname + "' > CNAME");
 
   return userCmds;
 }
@@ -71,10 +71,9 @@ function execBuild(buildCmd, cfg) {
     var currentBranch = stdout;
 
     var pipelines = gasket({
-      build: prepBuild(buildCmd),
+      build: buildCmd,
       recover: prepBuild(getRecoverCmd(currentBranch))
     });
-
     pipelines.run('build').on('error', function(err) {
       if (!cfg.noprompt) {
         prompt.start();
