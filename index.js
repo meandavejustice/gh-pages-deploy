@@ -3,11 +3,13 @@ var gasket = require('gasket');
 var chalk = require('chalk');
 var prompt = require('prompt');
 
-var gitbranch = "git branch -f gh-pages && ";
-var gitcheckout = "git checkout gh-pages && ";
-var gitreset = "git reset --hard origin/master && ";
-var gitcommit = "git add -A . && git commit -a -m 'gh-pages update' && ";
-var gitpush = "git push origin gh-pages --force && git checkout master";
+var gitbranch = "git branch -f gh-pages";
+var gitcheckout = "git checkout gh-pages";
+var gitreset = "git reset --hard origin/master";
+var gitadd = "git add -A .";
+var gitcommit = "git commit -a -m 'gh-pages update'";
+var gitpush = "git push origin gh-pages --force";
+var gitcheckmaster = "git checkout master";
 var getcurrentbranch = "git rev-parse --abbrev-ref HEAD";
 
 var question = {
@@ -22,8 +24,10 @@ function getBuildCmd(prepCmds) {
   return insert(prepCmds, [gitbranch,
                            gitcheckout,
                            gitreset,
+                           gitadd,
                            gitcommit,
-                           gitpush], 3);
+                           gitpush,
+                           gitcheckmaster], 4);
 }
 
 function getPrepCmd(cfg) {
