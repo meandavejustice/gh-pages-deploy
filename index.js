@@ -23,7 +23,7 @@ function getBuildCmd(prepCmds) {
                            gitcheckout,
                            gitreset,
                            gitcommit,
-                           gitpush], 2);
+                           gitpush], 3);
 }
 
 function getPrepCmd(cfg) {
