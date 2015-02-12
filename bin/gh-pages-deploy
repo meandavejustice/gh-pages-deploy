@@ -9,10 +9,9 @@ var buildCmd = deploy.getFullCmd(cfg);
 deploy.displayCmds(deploy.getFullCmd(cfg));
 
 if (cfg.noprompt) {
-  deploy.execBuild(buildCmd);
+  deploy.execBuild(buildCmd, cfg);
 } else {
   var prompt = require('prompt');
-
   prompt.start();
 
   var question = {
@@ -25,6 +24,6 @@ if (cfg.noprompt) {
 
   prompt.get(question, function(err,result) {
     if (result.deploy.toLowerCase() === 'n') process.exit(0);
-    deploy.execBuild(buildCmd);
+    deploy.execBuild(buildCmd, cfg);
   });
 }

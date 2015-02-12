@@ -2,6 +2,8 @@ var exec = require('child_process').exec;
 var gasket = require('gasket');
 var chalk = require('chalk');
 var prompt = require('prompt');
+prompt.message = "gh-pages-deploy".grey;
+prompt.delimiter = "=>".grey;
 
 var gitbranch = "git branch -f gh-pages";
 var gitcheckout = "git checkout gh-pages";
@@ -64,7 +66,7 @@ function getRecoverCmd(currentBranch) {
           "git checkout "+currentBranch];
 }
 
-function execBuild(buildCmd) {
+function execBuild(buildCmd, cfg) {
   exec(getcurrentbranch, function (error, stdout, stderr) {
     var currentBranch = stdout;
 
@@ -74,11 +76,16 @@ function execBuild(buildCmd) {
     });
 
     pipelines.run('build').on('error', function(err) {
-      prompt.start();
-      prompt.get(question, function(err,result) {
-        if (result.recover.toLowerCase() === 'n') process.exit(0);
+      if (!cfg.noprompt) {
+        prompt.start();
+        prompt.get(question, function(err,result) {
+          if (result.recover.toLowerCase() === 'n') process.exit(0);
+          pipelines.run('recover').pipe(process.stdout);
+        });
+      } else {
         pipelines.run('recover').pipe(process.stdout);
-      });
+      }
+
     }).pipe(process.stdout)
   });
 }
