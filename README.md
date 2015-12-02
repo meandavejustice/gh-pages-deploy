@@ -57,7 +57,7 @@ To configure `gh-pages-deploy` all you need to do is specify a couple of things 
 * "cname" content for CNAME file
 * "prep" an array of script names to run before pushing to github, this can be
 any script that you have declared in your "scripts" object in your `package.json`.
-* "post" an array of script names to run after "prep", but before push
+* "post" an array of script names to run after "prep", but before add/commit/push
 * "noprompt" if this is set to true, the prompt will be bypassed and you will never
 need to confirm the commands before deploying.
 
