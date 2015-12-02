@@ -22,14 +22,21 @@ var question = {
   }
 };
 
-function getBuildCmd(prepCmds) {
-  return insert(prepCmds, [gitbranch,
-                           gitcheckout,
-                           gitreset,
-                           gitadd,
-                           gitcommit,
-                           gitpush,
-                           gitcheckmaster], 3);
+function getBuildCmd(prepCmds, postCmds) {
+  return [
+    gitbranch,
+    gitcheckout,
+    gitreset
+  ].concat(
+    prepCmds,
+    postCmds,
+    [
+      gitadd,
+      gitcommit,
+      gitpush,
+      gitcheckmaster
+    ]
+  )
 }
 
 function getPrepCmd(cfg) {
@@ -43,6 +50,18 @@ function getPrepCmd(cfg) {
 
   if (cfg.staticpath) userCmds.push("cp -r " + cfg.staticpath + "/* .");
   if (cfg.cname) userCmds.push("echo '" + cfg.cname + "' > CNAME");
+
+  return userCmds;
+}
+
+function getPostCmd(cfg) {
+  var prefix = 'npm run ';
+  var userCmds = [];
+  if (cfg.post) {
+    userCmds = cfg.post.map(function(script) {
+      return prefix + script;
+    });
+  }
 
   return userCmds;
 }
@@ -89,14 +108,6 @@ function execBuild(buildCmd, cfg) {
   });
 }
 
-function insert(toInsert, dest, index) {
-  for (var i=0; i<toInsert.length;i++) {
-    dest.splice(i+index, 0, toInsert[i]);
-  }
-
-  return dest;
-}
-
 function prepBuild (cmds) {
   var freshArr = [];
   cmds.forEach(function(cmd) {
@@ -107,7 +118,7 @@ function prepBuild (cmds) {
 }
 
 function getFullCmd(cfg) {
-  return prepBuild(getBuildCmd(getPrepCmd(cfg)));
+  return prepBuild(getBuildCmd(getPrepCmd(cfg), getPostCmd(cfg)));
 }
 
 module.exports = {
