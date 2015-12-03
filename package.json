@@ -1,6 +1,6 @@
 {
   "name": "gh-pages-deploy",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "deploy to gh-pages with one command",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/meandavejustice/gh-pages-deploy",
   "dependencies": {
-    "chalk": "^0.5.1",
+    "chalk": "^1.1.1",
     "gasket": "^2.0.0",
     "prompt": "^0.2.14",
     "require-module": "^0.1.0"
