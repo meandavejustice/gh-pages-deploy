@@ -20,7 +20,8 @@ First add this to your scripts section of `package.json`:
 
 ```JSON
   "scripts": {
-    "deploy": "gh-pages-deploy"
+    "deploy": "gh-pages-deploy",
+    "clean-source": "rimraf README.md src webroot package.json"
   },
 ```
 
@@ -44,6 +45,9 @@ To configure `gh-pages-deploy` all you need to do is specify a couple of things 
       "build-sass",
       "optimize-img"
     ],
+    "post": [
+      "clean-source"
+    ],
     "noprompt": false
   },
 
@@ -53,6 +57,7 @@ To configure `gh-pages-deploy` all you need to do is specify a couple of things 
 * "cname" content for CNAME file
 * "prep" an array of script names to run before pushing to github, this can be
 any script that you have declared in your "scripts" object in your `package.json`.
+* "post" an array of script names to run after "prep", but before add/commit/push
 * "noprompt" if this is set to true, the prompt will be bypassed and you will never
 need to confirm the commands before deploying.
 
