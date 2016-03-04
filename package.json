@@ -1,6 +1,6 @@
 {
   "name": "gh-pages-deploy",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "deploy to gh-pages with one command",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "gasket": "^2.0.0",
-    "prompt": "^0.2.14",
+    "prompt": "1.0.0",
     "require-module": "^0.1.0"
   }
 }
