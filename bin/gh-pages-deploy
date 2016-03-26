@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+var chalk = require('chalk');
 var packageJSON = require('require-module')('./package.json');
 var deploy = require('../index');
 
@@ -12,17 +13,19 @@ if (cfg.noprompt) {
   deploy.execBuild(buildCmd, cfg);
 } else {
   var prompt = require('prompt');
+  prompt.message = chalk.cyan("gh-pages-deploy:");
+  prompt.delimiter = chalk.green(" ^ ");
   prompt.start();
 
   var question = {
     properties: {
       deploy: {
-        description: 'Would you like to deploy to github using these commands? (Y/N)'.magenta
+        description: chalk.magenta('Would you like to deploy to github using these commands? (Y/N)')
       }
     }
   };
 
-  prompt.get(question, function(err,result) {
+  prompt.get(question, function(err, result) {
     if (result.deploy.toLowerCase() === 'n') process.exit(0);
     deploy.execBuild(buildCmd, cfg);
   });
