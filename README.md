@@ -33,6 +33,14 @@ npm install gh-pages-deploy --save-dev
 
 And now you can run `npm run deploy` to run the `gh-pages-deploy` installed in the local `node_modules` folder (even if you have never done `npm install gh-pages-deploy -g`).
 
+You can also provide a custom commit message via command line argument:
+
+```JSON
+  "scripts": {
+    "deploy": "gh-pages-deploy -- 'A custom commit message'",
+  },
+```
+
 ## Options
 
 To configure `gh-pages-deploy` all you need to do is specify a couple of things in your `package.json` (all of which are optional)
@@ -45,6 +53,7 @@ To configure `gh-pages-deploy` all you need to do is specify a couple of things 
       "build-sass",
       "optimize-img"
     ],
+    "commit": "a custom commit message",
     "post": [
       "clean-source"
     ],
@@ -57,6 +66,7 @@ To configure `gh-pages-deploy` all you need to do is specify a couple of things 
 * "cname" content for CNAME file
 * "prep" an array of script names to run before pushing to github, this can be
 any script that you have declared in your "scripts" object in your `package.json`.
+* "commit" a custom commit message to be used when committing to git
 * "post" an array of script names to run after "prep", but before add/commit/push
 * "noprompt" if this is set to true, the prompt will be bypassed and you will never
 need to confirm the commands before deploying.
