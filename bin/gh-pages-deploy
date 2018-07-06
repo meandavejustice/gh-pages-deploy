@@ -5,12 +5,12 @@ var deploy = require('../index');
 
 var cfg = packageJSON['gh-pages-deploy'] || {};
 
-var buildCmd = deploy.getFullCmd(cfg);
+var buildCmds = deploy.getBuildCmds(cfg);
 
-deploy.displayCmds(deploy.getFullCmd(cfg));
+deploy.displayCmds(buildCmds);
 
 if (cfg.noprompt) {
-  deploy.execBuild(buildCmd, cfg);
+  deploy.execBuild(buildCmds, cfg);
 } else {
   var prompt = require('prompt');
   prompt.message = chalk.cyan("gh-pages-deploy:");
@@ -27,6 +27,6 @@ if (cfg.noprompt) {
 
   prompt.get(question, function(err, result) {
     if (result.deploy.toLowerCase() === 'n') process.exit(0);
-    deploy.execBuild(buildCmd, cfg);
+    deploy.execBuild(buildCmds, cfg);
   });
 }

@@ -49,6 +49,9 @@ To configure `gh-pages-deploy` all you need to do is specify a couple of things 
   "gh-pages-deploy": {
     "staticpath": "dist",
     "cname": "nope.org",
+    "remote": "origin",
+    "branch": "master",
+    "gh-pages": "gh-pages",
     "prep": [
       "build-sass",
       "optimize-img"
@@ -68,6 +71,9 @@ To configure `gh-pages-deploy` all you need to do is specify a couple of things 
 any script that you have declared in your "scripts" object in your `package.json`.
 * "commit" a custom commit message to be used when committing to git
 * "post" an array of script names to run after "prep", but before add/commit/push
+* "remote" the remote to push/pull from (defaults to 'origin')
+* "branch" the branch that is to be published (defaults to 'master')
+* "gh-pages" the branch that is being published
 * "noprompt" if this is set to true, the prompt will be bypassed and you will never
 need to confirm the commands before deploying.
 
@@ -86,5 +92,3 @@ being tied to just jekyll.
 ## LICENSE
 
 MIT
-
-
