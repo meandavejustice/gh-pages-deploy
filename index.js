@@ -2,6 +2,10 @@ var exec = require('child_process').exec;
 var gasket = require('gasket');
 var chalk = require('chalk');
 var prompt = require('prompt');
+
+var packageJSON = require('require-module')('./package.json');
+var cfg = packageJSON['gh-pages-deploy'] || {};
+
 prompt.message = "gh-pages-deploy".grey;
 prompt.delimiter = "=>".grey;
 
