@@ -5,17 +5,18 @@ var prompt = require('prompt');
 
 var packageJSON = require('require-module')('./package.json');
 var cfg = packageJSON['gh-pages-deploy'] || {};
+var targetBranch = cfg.branch || 'gh-pages';
 
 prompt.message = "gh-pages-deploy".grey;
 prompt.delimiter = "=>".grey;
 
-var gitbranch = "git branch -f gh-pages";
-var gitcheckout = "git checkout gh-pages";
+var gitbranch = "git branch -f " + targetBranch;
+var gitcheckout = "git checkout " + targetBranch;
 var gitreset = "git reset --hard origin/master";
 var gitadd = "git add -A .";
 var defaultmessage = "gh-pages update";
 var gitcommit = "git commit -a -m '" + (process.argv[3] || cfg.commit || defaultmessage) + "'";
-var gitpush = "git push origin gh-pages --force";
+var gitpush = "git push origin " + targetBranch + " --force";
 var gitcheckmaster = "git checkout master";
 var getcurrentbranch = "git rev-parse --abbrev-ref HEAD";
 
@@ -72,7 +73,7 @@ function getPostCmd(cfg) {
 }
 
 function displayCmds(cmd) {
-  console.log(chalk.gray('Preparing to deploy to gh-pages with these commands: \n'));
+  console.log(chalk.gray('Preparing to deploy to ' + targetBranch + ' with these commands: \n'));
   cmd.forEach(function(script, idx) {
     if (script !== null) {
       if (idx === 0) {

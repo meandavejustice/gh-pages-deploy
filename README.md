@@ -57,7 +57,8 @@ To configure `gh-pages-deploy` all you need to do is specify a couple of things 
     "post": [
       "clean-source"
     ],
-    "noprompt": false
+    "noprompt": false,
+    "branch": "gh-pages"
   },
 
 ```
@@ -70,6 +71,7 @@ any script that you have declared in your "scripts" object in your `package.json
 * "post" an array of script names to run after "prep", but before add/commit/push
 * "noprompt" if this is set to true, the prompt will be bypassed and you will never
 need to confirm the commands before deploying.
+* "branch" a custom branch, different from "gh-pages", if needed
 
 ## About
 
